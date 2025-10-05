@@ -1,5 +1,26 @@
-# you shouldn't commit these into source control
-# these are the default directory names, adjust/add to fit your needs
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# dbt (keep models and project files, exclude generated content)
 target/
 dbt_packages/
 logs/
+
+# Environment variables (keep these secret!)
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Credentials (never commit these!)
+profiles.yml
+*.pem
+*.p8
+*.key
