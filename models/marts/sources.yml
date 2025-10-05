@@ -1,0 +1,63 @@
+version: 2
+
+sources:
+  - name: traffic_forecast
+    description: "Traffic forecast source tables in DA_LAB database"
+    database: DA_LAB
+    schema: TRAFFIC_FORECAST
+    tables:
+      - name: stg_traffic_forecast
+        description: "Daily traffic data by account and product"
+        columns:
+          - name: date
+            description: "Date of traffic measurement"
+          - name: account_name
+            description: "Name of the account"
+          - name: product
+            description: "Product name (Fraud Sensor, MediaGuard, BD Requests)"
+          - name: account_id
+            description: "Unique account identifier"
+          - name: customer_id
+            description: "Customer identifier"
+          - name: traffic
+            description: "Traffic volume for the date/account/product"
+      
+      - name: traffic_forecast_signal
+        description: "Latest metrics snapshot with MAPE values per account"
+        columns:
+          - name: account_name
+            description: "Name of the account"
+          - name: account_id
+            description: "Unique account identifier"
+          - name: snapshot_datetime
+            description: "When the metrics were captured"
+          - name: "mean absolute percentage error"
+            description: "MAPE values in JSON format"
+      
+      - name: forecast_rerun_flags
+        description: "Flags to prevent re-running forecasts within same month"
+        columns:
+          - name: account_id
+            description: "Account ID that was processed"
+          - name: run_date
+            description: "Date when the forecast was run"
+      
+      - name: traffic_forecast_output
+        description: "Output table for forecast results"
+        columns:
+          - name: account_id
+            description: "Account identifier"
+          - name: account_name
+            description: "Account name"
+          - name: product
+            description: "Product name"
+          - name: ds
+            description: "Forecast date"
+          - name: yhat
+            description: "Predicted traffic value"
+          - name: model_version
+            description: "Version of the forecasting model used"
+          - name: param_source
+            description: "Source of model parameters"
+          - name: snapshot_date
+            description: "Date when forecast was generated"
