@@ -27,9 +27,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Full documentation: https://docs.getdbt.com/reference/model-configs
 models:
   traffic_forecast:
-    # Staging models - views for data cleaning and preparation
+    # Staging models - tables for reliable production builds
     staging:
-      +materialized: view
+      +materialized: table
       +docs:
         node_color: "#D4E6F1"  # Light blue for staging
     
